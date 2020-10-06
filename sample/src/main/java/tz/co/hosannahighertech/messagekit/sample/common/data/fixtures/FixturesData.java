@@ -13,18 +13,18 @@ abstract class FixturesData {
 
     static ArrayList<String> avatars = new ArrayList<String>() {
         {
-            add("http://i.imgur.com/pv1tBmT.png");
-            add("http://i.imgur.com/R3Jm1CL.png");
-            add("http://i.imgur.com/ROz4Jgh.png");
-            add("http://i.imgur.com/Qn9UesZ.png");
+            add("https://i.imgur.com/pv1tBmT.png");
+            add("https://i.imgur.com/R3Jm1CL.png");
+            add("https://i.imgur.com/ROz4Jgh.png");
+            add("https://i.imgur.com/Qn9UesZ.png");
         }
     };
 
     static final ArrayList<String> groupChatImages = new ArrayList<String>() {
         {
-            add("http://i.imgur.com/hRShCT3.png");
-            add("http://i.imgur.com/zgTUcL3.png");
-            add("http://i.imgur.com/mRqh5w1.png");
+            add("https://i.imgur.com/hRShCT3.png");
+            add("https://i.imgur.com/zgTUcL3.png");
+            add("https://i.imgur.com/mRqh5w1.png");
         }
     };
 

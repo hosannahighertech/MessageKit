@@ -12,7 +12,7 @@ To start using the component you just need to follow several steps:
 #### Add this widget into your xml layout:
 
 ```xml
-<com.stfalcon.chatkit.messages.MessagesList
+<messagekit.messages.MessagesList
    android:id="@+id/messagesList"
    android:layout_width="match_parent"
    android:layout_height="match_parent"
@@ -242,7 +242,7 @@ messagesAdapter.setDateHeadersFormatter(formatter);
 The simplest way to customize appearance is to use `MessageList` widget attributes. With them we can set up a default background color for incoming and outcoming messages, and even the colors for their pushed conditions and single selection. You can also change color and size for message font, send time and data in the headers. Now, by defining attributes this way:
 
 ```xml
-<com.stfalcon.chatkit.messages.MessagesList
+<messagekit.messages.MessagesList
    android:id="@+id/messagesList"
    android:layout_width="match_parent"
    android:layout_height="match_parent"

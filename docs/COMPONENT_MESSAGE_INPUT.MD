@@ -7,7 +7,7 @@ MessageInput is a subsidiary component for entering text messages, it supports a
 To add `MessageInput` to layout is as simple, as a common `EditText`:
 
 ```xml
-<com.stfalcon.chatkit.messages.MessageInput
+<messagekit.messages.MessageInput
    android:id="@+id/input"
    android:layout_width="match_parent"
    android:layout_height="wrap_content"
@@ -72,7 +72,7 @@ By using available widget attribute you can change color and size of text and in
 For example, we need to change color and size of the text, replace submit and attachment buttons background with a new one or change color of default (and the same for their icons) and change some sizes and indents.
 
 ```xml
-<com.stfalcon.chatkit.messages.MessageInput
+<messagekit.messages.MessageInput
    android:layout_width="match_parent"
    android:layout_height="wrap_content"
    app:attachmentButtonDefaultIconColor="@color/green"

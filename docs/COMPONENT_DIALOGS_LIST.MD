@@ -12,7 +12,7 @@ To start using the component, you just need to follow a few steps:
 #### Add the widget into your xml layout:
 
 ```xml
-<com.stfalcon.chatkit.dialogs.DialogsList
+<messagekit.dialogs.DialogsList
    android:id="@+id/dialogsList"
    android:layout_width="match_parent"
    android:layout_height="match_parent"/>
@@ -189,7 +189,7 @@ The simplest way to customize appearance is to use `DialogsList` widget attribut
 
 For example, when you define attributes like this:
 ```xml
-<com.stfalcon.chatkit.dialogs.DialogsList
+<messagekit.dialogs.DialogsList
 android:id="@+id/dialogsList"
 android:layout_width="match_parent"
 android:layout_height="match_parent"

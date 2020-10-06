@@ -1,0 +1,4 @@
+# ViewHolder constructors are resolved by reflection
+-keepclassmembers class * extends messagekit.commons.ViewHolder {
+   public <init>(android.view.View);
+}

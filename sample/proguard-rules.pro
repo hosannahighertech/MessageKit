@@ -95,19 +95,19 @@
 
 #FOR CHATKIT
 
--keep class * extends com.stfalcon.chatkit.messages.MessageHolders$OutcomingTextMessageViewHolder {
+-keep class * extends tz.co.hosannahighertech.messagekit.messages.MessageHolders$OutcomingTextMessageViewHolder {
      public <init>(android.view.View, java.lang.Object);
      public <init>(android.view.View);
  }
--keep class * extends com.stfalcon.chatkit.messages.MessageHolders$IncomingTextMessageViewHolder {
+-keep class * extends tz.co.hosannahighertech.messagekit.messages.MessageHolders$IncomingTextMessageViewHolder {
      public <init>(android.view.View, java.lang.Object);
      public <init>(android.view.View);
  }
--keep class * extends com.stfalcon.chatkit.messages.MessageHolders$IncomingImageMessageViewHolder {
+-keep class * extends tz.co.hosannahighertech.messagekit.messages.MessageHolders$IncomingImageMessageViewHolder {
      public <init>(android.view.View, java.lang.Object);
      public <init>(android.view.View);
  }
--keep class * extends com.stfalcon.chatkit.messages.MessageHolders$OutcomingImageMessageViewHolder {
+-keep class * extends tz.co.hosannahighertech.messagekit.messages.MessageHolders$OutcomingImageMessageViewHolder {
      public <init>(android.view.View, java.lang.Object);
      public <init>(android.view.View);
  }

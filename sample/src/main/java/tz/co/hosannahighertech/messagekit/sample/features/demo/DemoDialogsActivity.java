@@ -24,13 +24,7 @@ public abstract class DemoDialogsActivity extends AppCompatActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        imageLoader = new ImageLoader() {
-            @Override
-            public void loadImage(ImageView imageView, String url, Object payload) {
-                Picasso.with(DemoDialogsActivity.this).load(url).into(imageView);
-            }
-        };
+        imageLoader = (imageView, url, payload) -> Picasso.get().load(url).into(imageView);
     }
 
     @Override

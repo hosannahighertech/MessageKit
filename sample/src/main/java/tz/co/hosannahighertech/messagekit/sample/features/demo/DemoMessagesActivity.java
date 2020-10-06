@@ -42,13 +42,7 @@ public abstract class DemoMessagesActivity extends AppCompatActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        imageLoader = new ImageLoader() {
-            @Override
-            public void loadImage(ImageView imageView, String url, Object payload) {
-                Picasso.with(DemoMessagesActivity.this).load(url).into(imageView);
-            }
-        };
+        imageLoader = (imageView, url, payload) -> Picasso.get().load(url).into(imageView);
     }
 
     @Override
@@ -104,29 +98,24 @@ public abstract class DemoMessagesActivity extends AppCompatActivity
     }
 
     protected void loadMessages() {
-        new Handler().postDelayed(new Runnable() { //imitation of internet connection
-            @Override
-            public void run() {
-                ArrayList<Message> messages = MessagesFixtures.getMessages(lastLoadedDate);
-                lastLoadedDate = messages.get(messages.size() - 1).getCreatedAt();
-                messagesAdapter.addToEnd(messages, false);
-            }
+        //imitation of internet connection
+        new Handler().postDelayed(() -> {
+            ArrayList<Message> messages = MessagesFixtures.getMessages(lastLoadedDate);
+            lastLoadedDate = messages.get(messages.size() - 1).getCreatedAt();
+            messagesAdapter.addToEnd(messages, false);
         }, 1000);
     }
 
     private MessagesListAdapter.Formatter<Message> getMessageStringFormatter() {
-        return new MessagesListAdapter.Formatter<Message>() {
-            @Override
-            public String format(Message message) {
-                String createdAt = new SimpleDateFormat("MMM d, EEE 'at' h:mm a", Locale.getDefault())
-                        .format(message.getCreatedAt());
+        return message -> {
+            String createdAt = new SimpleDateFormat("MMM d, EEE 'at' h:mm a", Locale.getDefault())
+                    .format(message.getCreatedAt());
 
-                String text = message.getText();
-                if (text == null) text = "[attachment]";
+            String text = message.getText();
+            if (text == null) text = "[attachment]";
 
-                return String.format(Locale.getDefault(), "%s: %s (%s)",
-                        message.getUser().getName(), text, createdAt);
-            }
+            return String.format(Locale.getDefault(), "%s: %s (%s)",
+                    message.getUser().getName(), text, createdAt);
         };
     }
 }

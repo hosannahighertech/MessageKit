@@ -24,10 +24,10 @@ android {
 }
 
 ext {
-    picassoVersion = '2.5.2'
+    picassoVersion = '2.8'
     circleImageViewVersion = '3.1.0'
     shapeImageViewVersion = '0.9.3'
-    circleindicatorVersion = '1.2.2@aar'
+    circleindicatorVersion = '2.1.4'
 }
 
 dependencies {

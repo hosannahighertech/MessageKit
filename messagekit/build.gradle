@@ -1,5 +1,4 @@
-apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
+apply from: 'bintray.gradle'
 
 android {
     compileSdkVersion 30
@@ -24,41 +23,4 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation "com.google.android:flexbox:2.0.1"
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            // Creates a Maven publication called "release".
-            release(MavenPublication) {
-                from components.release
-                groupId = 'tz.co.hosannahighertech'
-                artifactId = 'messagekit'
-                version = '1.0.0apha1'
-            }
-        }
-    }
-}
-
-def localProperties = new Properties()
-localProperties.load(new FileInputStream(rootProject.file("local.properties")))
-
-bintray {
-    user = localProperties.getProperty("bintray.user")
-    key = localProperties.getProperty("bintray.apikey")
-    publications = ['release']
-    pkg {
-        repo = 'maven'
-        name = 'MessageKit'
-        userOrg = user
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/hosannahighertech/MessageKit.git'
-        version {
-            name = '1.0.0apha1'
-            desc = 'MessageKit - Library that makes development of Chat apps easier and fun! Clone of `stfalcon-studio/ChatKit`'
-            released  = new Date()
-            vcsTag = '1.0.0apha1'
-            attributes = ['version': '1','released':true]
-        }
-    }
 }

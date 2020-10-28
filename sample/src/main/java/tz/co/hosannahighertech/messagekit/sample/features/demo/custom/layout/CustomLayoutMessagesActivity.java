@@ -10,13 +10,11 @@ import tz.co.hosannahighertech.messagekit.messages.MessagesList;
 import tz.co.hosannahighertech.messagekit.messages.MessagesListAdapter;
 import tz.co.hosannahighertech.messagekit.sample.R;
 import tz.co.hosannahighertech.messagekit.sample.common.data.fixtures.MessagesFixtures;
-import tz.co.hosannahighertech.messagekit.sample.common.data.model.Message;
 import tz.co.hosannahighertech.messagekit.sample.features.demo.DemoMessagesActivity;
 import tz.co.hosannahighertech.messagekit.sample.utils.AppUtils;
 
 public class CustomLayoutMessagesActivity extends DemoMessagesActivity
-        implements MessagesListAdapter.OnMessageLongClickListener<Message>,
-        MessageInput.InputListener,
+        implements MessageInput.InputListener,
         MessageInput.AttachmentsListener {
 
     public static void open(Context context) {
@@ -39,6 +37,13 @@ public class CustomLayoutMessagesActivity extends DemoMessagesActivity
     }
 
     @Override
+    public void onSelectionChanged(int count) {
+        super.onSelectionChanged(count);
+
+        AppUtils.showToast(this, getString(R.string.on_log_selected_messages, count), false);
+    }
+
+    @Override
     public boolean onSubmit(CharSequence input) {
         messagesAdapter.addToStart(
                 MessagesFixtures.getTextMessage(input.toString()), true);
@@ -50,11 +55,6 @@ public class CustomLayoutMessagesActivity extends DemoMessagesActivity
         messagesAdapter.addToStart(MessagesFixtures.getImageMessage(), true);
     }
 
-    @Override
-    public void onMessageLongClick(Message message) {
-        AppUtils.showToast(this, R.string.on_log_click_message, false);
-    }
-
     private void initAdapter() {
         MessageHolders holdersConfig = new MessageHolders()
                 .setIncomingTextLayout(R.layout.item_custom_incoming_text_message)
@@ -63,7 +63,7 @@ public class CustomLayoutMessagesActivity extends DemoMessagesActivity
                 .setOutcomingImageLayout(R.layout.item_custom_outcoming_image_message);
 
         super.messagesAdapter = new MessagesListAdapter<>(super.senderId, holdersConfig, super.imageLoader);
-        super.messagesAdapter.setOnMessageLongClickListener(this);
+        super.messagesAdapter.enableSelectionMode(this);
         super.messagesAdapter.setLoadMoreListener(this);
         messagesList.setAdapter(super.messagesAdapter);
     }

@@ -284,7 +284,8 @@ class MessagesListStyle extends Style {
             return getMessageSelector(outcomingDefaultBubbleColor, outcomingDefaultBubbleSelectedColor,
                     outcomingDefaultBubblePressedColor, R.drawable.shape_outcoming_message);
         } else {
-            return getDrawable(outcomingBubbleDrawable);
+            return getMessageSelector(outcomingDefaultBubbleColor, outcomingDefaultBubbleSelectedColor,
+                    outcomingDefaultBubblePressedColor, outcomingBubbleDrawable);
         }
     }
 
@@ -398,7 +399,8 @@ class MessagesListStyle extends Style {
             return getMessageSelector(incomingDefaultBubbleColor, incomingDefaultBubbleSelectedColor,
                     incomingDefaultBubblePressedColor, R.drawable.shape_incoming_message);
         } else {
-            return getDrawable(incomingBubbleDrawable);
+            return getMessageSelector(incomingDefaultBubbleColor, incomingDefaultBubbleSelectedColor,
+                    incomingDefaultBubblePressedColor, incomingBubbleDrawable);
         }
     }
 

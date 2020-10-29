@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import tz.co.hosannahighertech.messagekit.commons.models.IMessage;
+import tz.co.hosannahighertech.messagekit.interfaces.OnMessageGestureListener;
 import tz.co.hosannahighertech.messagekit.messages.MessageInput;
 import tz.co.hosannahighertech.messagekit.messages.MessagesList;
 import tz.co.hosannahighertech.messagekit.messages.MessagesListAdapter;
@@ -66,7 +68,21 @@ public class DefaultMessagesActivity extends DemoMessagesActivity
                                 false);
                     }
                 });
-        this.messagesList.setAdapter(super.messagesAdapter);
+        this.messagesList.setAdapter(super.messagesAdapter, new OnMessageGestureListener(true) {
+            @Override
+            public void onSwipeLeft(IMessage message) {
+                AppUtils.showToast(DefaultMessagesActivity.this,
+                        message.getUser().getName() + " Swiped Left",
+                        false);
+            }
+
+            @Override
+            public void onSwipeRight(IMessage message) {
+                AppUtils.showToast(DefaultMessagesActivity.this,
+                        message.getUser().getName() + " Swiped Right",
+                        false);
+            }
+        });
     }
 
     @Override

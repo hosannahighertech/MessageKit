@@ -3,7 +3,7 @@ def bintrayRepo = 'maven'
 
 def libraryGroupId = 'tz.co.hosannahighertech'
 def libraryArtifactId = 'messagekit'
-def libraryVersion = '1.0.0apha3'
+def libraryVersion = '1.0.0apha4'
 
 def libraryName = 'messagekit'
 def libraryDesc = 'Library that makes development of Chat apps easier and fun! modified fork of stfalcon-studio/ChatKit'
@@ -64,7 +64,7 @@ install {
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
+    archiveClassifier.set('sources')
 }
 
 task javadoc(type: Javadoc) {
@@ -79,7 +79,7 @@ afterEvaluate {
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
+    archiveClassifier.set('javadoc')
     from javadoc.destinationDir
 }
 artifacts {

@@ -4,7 +4,7 @@ apply plugin: 'maven-publish'
 
 def libraryGroupId = 'tz.co.hosannahighertech'
 def libraryArtifactId = 'messagekit'
-def libraryVersion = '1.0.0apha1'
+def libraryVersion = '1.0.0apha3'
 
 afterEvaluate {
     publishing {

@@ -432,6 +432,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
 
     /**
      * Sets custom {@link DateFormatter.Formatter} for text representation of last message date.
+     * @param datesFormatter The formatter Object
      */
     public void setDatesFormatter(DateFormatter.Formatter datesFormatter) {
         this.datesFormatter = datesFormatter;
@@ -444,6 +445,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
 
     /**
     * @return the position of a dialog in the dialogs list.
+     * @param dialog The Dialog object
     */
     public int getDialogPosition(DIALOG dialog) {
         return this.items.indexOf(dialog);

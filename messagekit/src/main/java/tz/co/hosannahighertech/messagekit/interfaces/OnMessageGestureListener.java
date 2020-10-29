@@ -18,7 +18,7 @@ public abstract class OnMessageGestureListener {
 
     /**
      * Tell whether we should restore swiped item or delete it
-     * @return
+     * @return Whether the Swiped ViewHolder should be restored
      */
     public boolean isRestoreSwiped() {
         return restoreSwiped;
@@ -27,14 +27,14 @@ public abstract class OnMessageGestureListener {
     /**
      * Get Gesture Events for Swipe Left
      *
-     * @param message {@link IMessage} of the swiped item. Use {@link MessagesListAdapter::getMessageByIndex} to get the message
+     * @param message {@link IMessage} of the swiped item. Use {@link MessagesListAdapter#getMessageByIndex} to get the message
      */
     abstract public void onSwipeLeft(IMessage message);
 
     /**
      * Get Gesture Events for Swipe Right
      *
-     * @param message {@link IMessage} of the swiped item. Use {@link MessagesListAdapter::getMessageByIndex} to get the message
+     * @param message {@link IMessage} of the swiped item. Use {@link MessagesListAdapter#getMessageByIndex} to get the message
      */
     abstract public void onSwipeRight(IMessage message);
 }

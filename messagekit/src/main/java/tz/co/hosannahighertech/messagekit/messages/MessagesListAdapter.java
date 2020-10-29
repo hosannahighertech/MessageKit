@@ -145,9 +145,10 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
      */
 
     /**
-     * Get the message {@IMessage} instance at position
+     * Get the message {@link IMessage} instance at position
      *
      * @param position 0 - Based index of the message
+     * @return Message Object if found or null
      */
     @SuppressWarnings("unchecked")
     public MESSAGE getMessageByIndex(int position) {
@@ -206,6 +207,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
      * Updates message by its id.
      *
      * @param message updated message object.
+     * @return Whether upload was successful or not
      */
     public boolean update(MESSAGE message) {
         return update(message.getId(), message);
@@ -216,6 +218,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
      *
      * @param oldId      an identifier of message to update.
      * @param newMessage new message object.
+     * @return Whether upload was successful or not
      */
     public boolean update(String oldId, MESSAGE newMessage) {
         int position = getMessagePositionById(oldId);
@@ -261,6 +264,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
      * specified the item stays at current position and updated
      *
      * @param message message object to insert or update.
+     * @param moveToStartIfUpdate Whether to move to start if message found
      */
     public void upsert(MESSAGE message, boolean moveToStartIfUpdate) {
         if (moveToStartIfUpdate) {
@@ -355,6 +359,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
 
     /**
      * Clears the messages list.
+     * @param notifyDataSetChanged whether to call Adapter's notifyDataSetChanged after clearing
      */
     public void clear(boolean notifyDataSetChanged) {
         if (items != null) {
@@ -513,6 +518,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
 
     /**
      * Sets custom {@link DateFormatter.Formatter} for text representation of date headers.
+     * @param dateHeadersFormatter DateFormatter.Formatter. The formatter
      */
     public void setDateHeadersFormatter(DateFormatter.Formatter dateHeadersFormatter) {
         this.dateHeadersFormatter = dateHeadersFormatter;
@@ -765,6 +771,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
          * Fires when message view is clicked.
          *
          * @param message clicked message.
+         * @param view View. The view clicked
          */
         void onMessageViewClick(View view, MESSAGE message);
     }
@@ -791,6 +798,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
          * Fires when message view is long clicked.
          *
          * @param message clicked message.
+         * @param view View. Clicked view
          */
         void onMessageViewLongClick(View view, MESSAGE message);
     }

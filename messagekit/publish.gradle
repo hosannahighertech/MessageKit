@@ -1,0 +1,129 @@
+
+def bintrayRepo = 'maven'
+
+def libraryGroupId = 'tz.co.hosannahighertech'
+def libraryArtifactId = 'messagekit'
+def libraryVersion = '1.0.0apha3'
+
+def libraryName = 'messagekit'
+def libraryDesc = 'Library that makes development of Chat apps easier and fun! modified fork of stfalcon-studio/ChatKit'
+
+def libraryURL = 'https://github.com/hosannahighertech/MessageKit'
+def gitUrl = 'https://github.com/hosannahighertech/MessageKit.git'
+
+def licenseName = 'The Apache Software License, Version 2.0'
+def licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+def allLicenses = ['Apache-2.0']
+
+def developerId = 'mtangoo'
+def developerName = 'Stefano Mtangoo'
+def developerEmail = 'mwinjilisti@gmail.com'
+
+version = libraryVersion
+group = libraryGroupId
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                groupId libraryGroupId
+                artifactId libraryArtifactId
+                version libraryVersion
+
+                // Add your description here
+                name libraryName
+                description libraryDesc
+                url libraryURL
+
+                // Set your license
+                licenses {
+                    license {
+                        name licenseName
+                        url licenseUrl
+                    }
+                }
+                developers {
+                    developer {
+                        id developerId
+                        name developerName
+                        email developerEmail
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url libraryURL
+
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+afterEvaluate {
+    javadoc.classpath += files(android.libraryVariants.collect { variant ->
+        variant.javaCompileProvider.get().classpath.files
+    })
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+// Bintray
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = bintrayRepo
+        name = libraryName
+
+        desc = libraryDesc
+        labels = ['Chatkit', 'Chat', 'Messaging', 'Android', 'Library']
+        userOrg = "hosannahighertechorg"
+
+        websiteUrl = libraryURL
+        vcsUrl = gitUrl
+        websiteUrl = libraryURL
+        licenses = allLicenses
+        issueTrackerUrl = 'https://github.com/hosannahighertech/MessageKit/issues'
+        githubRepo = 'hosannahighertech/MessageKit'
+
+        publish = true
+        override = true
+        publicDownloadNumbers = true
+
+        version {
+            name = libraryVersion
+            released  = new Date()
+            vcsTag = libraryVersion
+            attributes = ['version': '1','released':true]
+            //Sign 'em all. Required by Maven Central
+            gpg {
+                sign = true
+            }
+        }
+    }
+}

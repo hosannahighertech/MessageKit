@@ -439,6 +439,7 @@ public class MessageHolders {
      * @param incomingLayout  layout resource for incoming message
      * @param outcomingLayout layout resource for outcoming message
      * @param contentChecker  {@link ContentChecker} for registered type
+     * @param <TYPE> Message Content Type
      * @return {@link MessageHolders} for subsequent configuration.
      */
     public <TYPE extends MessageContentType>
@@ -446,7 +447,7 @@ public class MessageHolders {
             byte type, @NonNull Class<? extends BaseMessageViewHolder<TYPE>> holder,
             @LayoutRes int incomingLayout,
             @LayoutRes int outcomingLayout,
-            @NonNull ContentChecker contentChecker) {
+            @NonNull ContentChecker<TYPE> contentChecker) {
 
         return registerContentType(type,
                 holder, incomingLayout,
@@ -463,6 +464,7 @@ public class MessageHolders {
      * @param incomingLayout  layout resource for incoming message
      * @param outcomingLayout layout resource for outcoming message
      * @param contentChecker  {@link ContentChecker} for registered type
+     * @param <TYPE> Message Content Type
      * @return {@link MessageHolders} for subsequent configuration.
      */
     public <TYPE extends MessageContentType>
@@ -470,7 +472,7 @@ public class MessageHolders {
             byte type,
             @NonNull Class<? extends BaseMessageViewHolder<TYPE>> incomingHolder, @LayoutRes int incomingLayout,
             @NonNull Class<? extends BaseMessageViewHolder<TYPE>> outcomingHolder, @LayoutRes int outcomingLayout,
-            @NonNull ContentChecker contentChecker) {
+            @NonNull ContentChecker<TYPE> contentChecker) {
 
         if (type == 0)
             throw new IllegalArgumentException("content type must be greater or less than '0'!");
@@ -493,6 +495,7 @@ public class MessageHolders {
      * @param outcomingPayload payload for outcoming message
      * @param incomingLayout   layout resource for incoming message
      * @param outcomingLayout  layout resource for outcoming message
+     * @param <TYPE> Message Content Type
      * @param contentChecker   {@link MessageHolders.ContentChecker} for registered type
      * @return {@link MessageHolders} for subsequent configuration.
      */
@@ -501,7 +504,7 @@ public class MessageHolders {
             byte type,
             @NonNull Class<? extends MessageHolders.BaseMessageViewHolder<TYPE>> incomingHolder, Object incomingPayload, @LayoutRes int incomingLayout,
             @NonNull Class<? extends MessageHolders.BaseMessageViewHolder<TYPE>> outcomingHolder, Object outcomingPayload, @LayoutRes int outcomingLayout,
-            @NonNull MessageHolders.ContentChecker contentChecker) {
+            @NonNull MessageHolders.ContentChecker<TYPE> contentChecker) {
 
         if (type == 0)
             throw new IllegalArgumentException("content type must be greater or less than '0'!");
@@ -905,7 +908,7 @@ public class MessageHolders {
 
         /**
          * Override this method to have ability to pass custom data in ImageLoader for loading image(not avatar).
-         *
+         * @return Object. Image Payload Object or null if none
          * @param message Message with image
          */
         protected Object getPayloadForImageLoader(MESSAGE message) {
@@ -977,6 +980,7 @@ public class MessageHolders {
          * Override this method to have ability to pass custom data in ImageLoader for loading image(not avatar).
          *
          * @param message Message with image
+         * @return Object Image loader Payload.
          */
         protected Object getPayloadForImageLoader(MESSAGE message) {
             return null;

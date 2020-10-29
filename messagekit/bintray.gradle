@@ -49,4 +49,5 @@ bintray {
             attributes = ['version': '1','released':true]
         }
     }
+    publish = true
 }

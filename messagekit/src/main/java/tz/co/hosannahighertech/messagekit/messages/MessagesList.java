@@ -17,14 +17,18 @@
 package tz.co.hosannahighertech.messagekit.messages;
 
 import android.content.Context;
+import android.util.AttributeSet;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
-import android.util.AttributeSet;
 
 import tz.co.hosannahighertech.messagekit.commons.models.IMessage;
+import tz.co.hosannahighertech.messagekit.interfaces.OnMessageGestureListener;
 
 /**
  * Component for displaying list of messages
@@ -64,6 +68,44 @@ public class MessagesList extends RecyclerView {
     public <MESSAGE extends IMessage>
     void setAdapter(MessagesListAdapter<MESSAGE> adapter) {
         setAdapter(adapter, true);
+    }
+
+    /**
+     * Sets adapter for MessagesList and listen for gestures
+     *
+     * @param adapter   Adapter. Must extend MessagesListAdapter
+     * @param <MESSAGE> Message model class
+     * @param listener  OnMessageGestureListener. Listens for Message list gestures,
+     *                  currently only swipe left/right is implemented
+     */
+    public <MESSAGE extends IMessage>
+    void setAdapter(MessagesListAdapter<MESSAGE> adapter, OnMessageGestureListener listener) {
+        setAdapter(adapter, true);
+
+        final ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                MESSAGE message = adapter.getMessageByIndex(viewHolder.getAdapterPosition());
+                if (direction == ItemTouchHelper.LEFT) {
+                    listener.onSwipeLeft(message);
+                } else if (direction == ItemTouchHelper.RIGHT) {
+                    listener.onSwipeRight(message);
+                }
+
+                if (listener.isRestoreSwiped()) {
+                    adapter.notifyDataSetChanged();
+                } else {
+                    adapter.delete(message);
+                }
+            }
+        });
+        itemTouchHelper.attachToRecyclerView(this);
     }
 
     /**

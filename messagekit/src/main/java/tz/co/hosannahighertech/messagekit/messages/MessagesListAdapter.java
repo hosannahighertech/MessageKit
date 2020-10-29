@@ -19,8 +19,10 @@ package tz.co.hosannahighertech.messagekit.messages;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+
 import androidx.annotation.LayoutRes;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.text.Spannable;
 import android.text.method.LinkMovementMethod;
 import android.util.SparseArray;
@@ -140,7 +142,21 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
 
     /*
      * PUBLIC METHODS
-     * */
+     */
+
+    /**
+     * Get the message {@IMessage} instance at position
+     *
+     * @param position 0 - Based index of the message
+     */
+    @SuppressWarnings("unchecked")
+    public MESSAGE getMessageByIndex(int position) {
+        if (position < items.size()) {
+            if ((items.get(position).item instanceof IMessage))
+                return (MESSAGE) items.get(position).item;
+        }
+        return null;
+    }
 
     /**
      * Adds message to bottom of list and scroll if needed.

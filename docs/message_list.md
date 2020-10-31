@@ -20,13 +20,32 @@ To start using the component you just need to follow several steps:
 ```
 #### Set an adapter
 
-Adapter’s constructor takes a sender id (a user on whose behalf messages are sending) and implementation of ImageLoader to load avatars in messages ([Click here to learn more about image loading](IMAGE_LOADER.md)).
+Adapter’s constructor takes a sender id (a user on whose behalf messages are sending) and implementation of ImageLoader to load avatars in messages ([Click here to learn more about image loading](image_loader.md)).
 
 
 ```java
 MessagesListAdapter<Message> adapter = new MessagesListAdapter<>(senderId, imageLoader);
 messagesList.setAdapter(adapter);
 ```
+If you are interested in receiving the Swipe left or right Gestures, then you will need to pass third argument which is of type `OnMessageGestureListener` 
+
+```java
+MessagesListAdapter<Message> adapter = new MessagesListAdapter<>(senderId, imageLoader);
+messagesList.setAdapter(super.messagesAdapter, new OnMessageGestureListener(true) {
+            @Override
+            public void onSwipeLeft(IMessage message) {
+                Toast.makeText(context, message.getUser().getName() + " Swiped Left", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onSwipeRight(IMessage message) {
+                Toast.makeText(context, message.getUser().getName() + " Swiped Right", Toast.LENGTH_LONG).show();
+            }
+        });
+```
+
+
+
 Anyway, you can pass second parameter as `null`, and avatars will be hidden.
 
 #### Prepare your model

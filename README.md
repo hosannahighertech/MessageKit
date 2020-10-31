@@ -1,8 +1,6 @@
-# ChatKit for Android
+# MessageKit for Android
 
-[ ![Download](https://api.bintray.com/packages/troy379/maven/ChatKit/images/download.svg) ](https://bintray.com/troy379/maven/ChatKit/_latestVersion)
-
-ChatKit is a library designed to simplify the development of UI for such a trivial task as chat. It has flexible possibilities for styling, customizing and data management
+MessageKit is a library designed to simplify the development of UI for such a trivial task as chat. It has flexible possibilities for styling, customizing and data management
 
 <p align="center">
 <img src="images/HEADER.jpg">
@@ -17,51 +15,40 @@ ChatKit is a library designed to simplify the development of UI for such a trivi
 * List of messages (incoming and outcoming) with history pagination and already calculated dates headers;
 * Different avatars with no specific realization of image loading - you can use any library you want;
 * Selection mode for interacting with messages;
+* Get Swipe Left/Right Gestures to implement features like Swipe to reply or delete
 * Links highlighting
 * Easy dates formatting;
 * Your own models for dialogs and messages - there is no converting needed;
 * Ready to use message input view;
 * Custom animations (according to RecyclerView usage).
 
-### Who we are
-Need iOS and Android apps, MVP development or prototyping? Contact us via info@stfalcon.com. We develop software since 2009, and we're known experts in this field. Check out our [portfolio](https://stfalcon.com/en/portfolio) and see more libraries from [stfalcon-studio](https://stfalcon-studio.github.io/).
+## Sample Application
 
-## Demo Application
-
-[![Get it on Google Play](https://play.google.com/intl/en_us/badges/images/badge_new.png)](https://play.google.com/store/apps/details?id=messagekit.sample)
+For Demonstration of how to use different features of MessageKit capabilities, is included the sample application as a module. A demo application will be uploaded to Playstore and linked here
 
 ### How to use
 
 To implement all of the features above you can use the following components:
 
-* [DialogsList](docs/COMPONENT_DIALOGS_LIST.MD);
-* [MessagesList](docs/COMPONENT_MESSAGES_LIST.md);
-* [MessageInput](docs/COMPONENT_MESSAGE_INPUT.MD);
+* [DialogsList](docs/dialogs.md);
+* [MessagesList](docs/message_list.md);
+* [MessageInput](docs/message_input.md)
+
+### Requirements 
+
+Library requires minimum of Android SDK 19 to work. It will probably not work with lower versions.
 
 
 ### Download
 
 Download via Gradle:
 ```gradle
-compile 'com.github.stfalcon:chatkit:0.3.3'
-```
-
-or Maven:
-```xml
-<dependency>
-  <groupId>com.github.stfalcon</groupId>
-  <artifactId>chatkit</artifactId>
-  <version>0.3.3</version>
-  <type>pom</type>
-</dependency>
+implementation 'tz.co.hosannahighertech:messagekit:1.0.0apha4'
 ```
 
 ### AndroidX
-To use with AndroidX you have to set targetSdkVersion for your project to 28 and add following 2 lines in ```gradle.properties``` file.
-```
-android.useAndroidX=true
-android.enableJetifier=true
-```
+
+Library Supports Androidx aout of the box.
 
 ### Proguard
 If you are using ProGuard you might need to add rules:
@@ -84,30 +71,29 @@ If you are using ProGuard you might need to add rules:
  }
 ```
 
-### Try it
-
-Check out the [sample project](/sample/src/main) to try it yourself! :wink:
-
 ### Changelog
 [See the changelog](docs/CHANGELOG.md) to be aware of latest improvements and fixes.
 
+### Are You Using MessageKit Android?
+
+We Would like to make a list of Companies and Applications using MessageKit Android. Please let us know through support@hosannahighertech.co.tz. Interested in Working with us? Contact us through the same eMail.
+
 ### Gratitude
 
-We were inspired by [JSQMessagesViewController](https://github.com/jessesquires/JSQMessagesViewController) library for iOS. In our plans to improve functionality to give Android developers wide opportunities to create fast and good-looking UI for chats in their applications.
-
-Please, contact us via github@stfalcon.com if you are using this library, just to let us know :)
+MessageKit started as a fork of ChatKit library by [St Falcon](https://github.com/stfalcon-studio).  Without their sacrifice and a good heart toward open source we would probably have no MessageKit Android.
 Thank you!
 
 ### License
 
 ```
-Copyright (C) 2017 stfalcon.com
+Original Code, Copyright (C) 2017 stfalcon.com
+New Code Copyright (C) 2020, Hosanna Higher Technologies Co. Ltd
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-https://github.com/stfalcon-studio/ChatKit/blob/master/LICENSE
+https://github.com/stfalcon-studio/MessageKit/blob/master/LICENSE
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,

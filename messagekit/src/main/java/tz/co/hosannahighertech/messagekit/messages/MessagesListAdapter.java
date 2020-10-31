@@ -371,6 +371,35 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     }
 
     /**
+     * Get the message position in the recyclerview
+     *
+     * @param messageId Message ID
+     * @return 0 based position of the message in the adapter
+     */
+    @SuppressWarnings("unchecked")
+    public int getMessagePosition(String messageId) {
+        for (int position = 0; position < items.size(); position++) {
+            if ((items.get(position).item instanceof IMessage)) {
+                MESSAGE item = (MESSAGE) items.get(position).item;
+                if(item.getId().equals(messageId)){
+                    return position;
+                }
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Get the message position in the recyclerview
+     *
+     * @param message Message
+     * @return 0 based position of the message in the adapter
+     */
+    public int getMessagePosition(MESSAGE message) {
+        return getMessagePosition(message.getId());
+    }
+
+    /**
      * Enables selection mode.
      *
      * @param selectionListener listener for selected items count. To get selected messages use {@link #getSelectedMessages()}.
